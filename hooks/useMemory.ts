@@ -1,9 +1,17 @@
 "use client"
 import { useCallback, useEffect, useState } from "react"
 import { initMemory, flipCard, resolveFlip, MemoryState } from "@/lib/games/memory"
+import { submitScore } from "@/lib/submitScore"
 
 export function useMemory() {
   const [state, setState] = useState<MemoryState>(() => initMemory())
+
+  // 游戏结束时自动提交分数
+  useEffect(() => {
+    if (state.status === "game_over" && state.score > 0) {
+      submitScore("memory", state.score)
+    }
+  }, [state.status, state.score])
 
   const start = useCallback(() => setState(s => ({ ...s, status: "playing" })), [])
   const restart = useCallback(() => setState(initMemory()), [])

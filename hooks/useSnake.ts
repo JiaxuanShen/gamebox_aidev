@@ -1,6 +1,7 @@
 "use client"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { initSnake, tickSnake, changeDirection, SnakeState, Direction } from "@/lib/games/snake"
+import { submitScore } from "@/lib/submitScore"
 
 const TICK_MS = 150
 
@@ -33,6 +34,13 @@ export function useSnake() {
       if (intervalRef.current) clearInterval(intervalRef.current)
     }
   }, [state.status])
+
+  // 游戏结束时自动提交分数
+  useEffect(() => {
+    if (state.status === "game_over" && state.score > 0) {
+      submitScore("snake", state.score)
+    }
+  }, [state.status, state.score])
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
