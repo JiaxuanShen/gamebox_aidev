@@ -2,5 +2,6 @@
   "enabledPlugins": {
     "dev-browser@dev-browser-marketplace": true,
     "ui-ux-pro-max@ui-ux-pro-max-skill": true
-  }
+  },
+  "includeCoAuthoredBy": false
 }
