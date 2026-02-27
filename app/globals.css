@@ -125,19 +125,6 @@
   }
 }
 
-/* ===== 赛博朋克主题覆盖 ===== */
-@layer base {
-  :root {
-    --cyber-bg: 240 10% 4%;
-    --cyber-card: 240 10% 7%;
-    --cyber-border: 240 6% 15%;
-    --cyber-cyan: 168 100% 50%;
-    --cyber-purple: 276 100% 63%;
-    --cyber-pink: 344 100% 58%;
-    --cyber-yellow: 52 100% 50%;
-  }
-}
-
 /* Tailwind v4 自定义颜色扩展 */
 @theme {
   --color-cyber-bg: oklch(0.09 0.02 260);

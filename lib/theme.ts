@@ -11,7 +11,8 @@ export const CYBER_COLORS = {
 
 export type CyberColor = keyof typeof CYBER_COLORS
 
-export const GAME_CATEGORY_COLORS: Record<string, string> = {
+type GameCategory = "puzzle" | "arcade" | "board" | "casual"
+export const GAME_CATEGORY_COLORS: Record<GameCategory, string> = {
   puzzle: CYBER_COLORS.cyan,
   arcade: CYBER_COLORS.pink,
   board: CYBER_COLORS.purple,
