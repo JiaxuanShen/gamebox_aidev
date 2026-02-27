@@ -1,65 +1,83 @@
-import Image from "next/image";
+import { GameCard } from "@/components/GameCard"
+import { Game } from "@/types"
+import { Zap } from "lucide-react"
+
+const GAMES: Game[] = [
+  {
+    slug: "snake",
+    name: "贪吃蛇",
+    category: "arcade",
+    description: "经典街机游戏，控制蛇吃食物，越长越高分",
+  },
+  {
+    slug: "2048",
+    name: "2048",
+    category: "puzzle",
+    description: "滑动方块合并数字，达到 2048 即为胜利",
+  },
+  {
+    slug: "gomoku",
+    name: "五子棋",
+    category: "board",
+    description: "双人对战棋盘游戏，先连五子者获胜",
+  },
+  {
+    slug: "memory",
+    name: "记忆翻牌",
+    category: "casual",
+    description: "翻开配对相同图案的卡片，考验你的记忆力",
+  },
+]
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main className="max-w-6xl mx-auto px-4 py-10">
+      {/* Hero */}
+      <div className="mb-12 relative">
+        <div
+          className="absolute -top-10 -left-10 w-64 h-64 rounded-full blur-3xl opacity-10 pointer-events-none"
+          style={{ background: "#00ffcc" }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+        <div className="relative">
+          <div className="flex items-center gap-2 mb-3">
+            <Zap className="w-4 h-4 text-[#00ffcc]" strokeWidth={1.5} />
+            <span className="text-xs font-mono text-[#00ffcc] tracking-widest uppercase">
+              Online Games
+            </span>
+          </div>
+          <h1
+            className="font-['Press_Start_2P'] text-2xl md:text-3xl text-white mb-4 leading-tight"
+            style={{ textShadow: "0 0 30px #00ffcc33" }}
+          >
+            GAME<span className="text-[#00ffcc]">BOX</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-gray-400 font-mono text-sm max-w-md leading-relaxed">
+            经典小游戏合集，登录后参与全球排行榜挑战
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+      </div>
+
+      {/* 分隔线标题 */}
+      <div className="flex items-center gap-3 mb-6">
+        <div className="h-px flex-1 bg-gradient-to-r from-[#00ffcc33] to-transparent" />
+        <span className="text-xs font-['Press_Start_2P'] text-[#00ffcc] tracking-widest">
+          SELECT GAME
+        </span>
+        <div className="h-px flex-1 bg-gradient-to-l from-[#00ffcc33] to-transparent" />
+      </div>
+
+      {/* 游戏卡片网格 */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {GAMES.map((game) => (
+          <GameCard key={game.slug} game={game} />
+        ))}
+      </div>
+
+      <div className="mt-16 text-center">
+        <p className="text-xs font-mono text-gray-600 tracking-widest">
+          MORE GAMES COMING SOON...
+        </p>
+      </div>
+    </main>
+  )
 }
