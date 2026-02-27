@@ -34,7 +34,10 @@
 
 ## Supabase 配置
 
-_（Task 3 完成后记录 Project URL 和配置细节）_
+- Project URL: https://pltzexkwjrjkvqclqbrr.supabase.co
+- 表：games（slug PK）、scores（user_id FK → auth.users）
+- RLS：games/scores 公开可读，scores 仅限本人写入
+- 初始数据：snake/2048/gomoku/memory 4 条游戏记录已插入
 
 ## 已知问题 / 踩坑
 
